@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-12 well">Brand</div>
+</div>
+<app-product></app-product>
+<div class="row">
+  <div class="col-xs-12 well">Footer</div>
+</div>
+
+<div class="row">
+	<div class="alert alert-info">
+	  <p>Only for test purpose, select the location to 
+	  see the catalogue for each one of the locations.</p>
+	  <select name="customer" 
+		[(ngModel)]="customerID"
+		(change)="setCustomerID(customerID)">
+		<option value="1">LONDON Customer</option>
+		<option value="2">LIVERPOOL Customer</option>
+	  </select>
+	</div>
+</div>
+

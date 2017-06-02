@@ -1,0 +1,85 @@
+<div class="row" *ngIf="!hasError && !showConfirmation">
+  <div class="col-xs-12 col-sm-4" 
+  	*ngFor="let category of categories">
+  	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	  	<h4>{{ category }}</h4>
+	  </div>
+	  <div class="panel-body sky-box">
+	  	<p *ngFor="let product of catalogue[category]">
+	  	  <label>
+		    <input 
+		    	type="checkbox" 
+		    	[name]="product.id" 
+		    	[value]="product.id"
+		    	(click)="addProductToBasket(product.id, product.name, $event)">
+		    {{ product.name }}
+		  </label>
+	    </p>
+	  </div>
+	</div>
+  </div>
+
+  <div class="col-xs-12 col-sm-4">
+  	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	  	<h4>Basket</h4>
+	  </div>
+	  <div class="panel-body sky-box">
+	  	<strong *ngIf="basket.length==0">
+	  		The basket is empty.
+	  	</strong>
+
+	  	<p *ngFor="let product of basket">
+			<span class="glyphicon glyphicon-ok-circle"
+				aria-hidden="true"></span> 
+			<strong>{{ product.name }}</strong>
+		</p>
+
+	    <p class="text-center">
+	    	<br />
+	  		<button 
+	  			type="button" 
+	  			class="btn btn-success btn-lg"
+	  			(click)="checkout()">
+	  			Checkout
+	  		</button>
+	  	</p>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<div class="row" *ngIf="showConfirmation">
+  <div class="col-xs-12">
+  	<div class="panel panel-success">
+	  <div class="panel-heading">
+	  	<h4>Confirmation</h4>
+	  </div>
+	  <div class="panel-body sky-box">
+	  	<h4>Product(s) selected:</h4>
+	  	<hr />
+	  	<p *ngFor="let product of basket">
+			<span class="glyphicon glyphicon-ok-circle"
+				aria-hidden="true"></span> 
+			<strong>{{ product.name }}</strong>
+		</p>
+		<p class="text-center">
+	    	<br />
+	  		<button 
+	  			type="button" 
+	  			class="btn btn-warning"
+	  			onclick="location.reload();">
+	  			Start again
+	  		</button>
+	  	</p>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<div class="row" *ngIf="hasError">
+  <div class="alert alert-danger" role="alert">
+  	Error fetching data from API.
+  </div>
+</div>
